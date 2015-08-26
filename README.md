@@ -8,22 +8,32 @@ Example Usage
 ------------
 
 ```Javascript
-//load a jpeg and console.log every tag in the first IFD if there is EXIF metadata present in the JPEG.
+//load a JPEG and console.log every tag in the first IFD if there is EXIF metadata present in the JPEG.
 
 //load a JPEG file, make a buffer
 var jpeg = {}; //A JPEG-file selected with drag&drop or whatever
 var reader = new FileReaderSync()
 var buffer = reader.readAsArrayBuffer(jpeg);
 
-var markers = readJpegMarkersList(buffer); //build a list of every JPEG marker in the file
+//build a list of every JPEG marker in the file
+var markers = readJpegMarkersList(buffer);
 
+//iterate over the markers, to find any EXIF segments present in the file.
 markers.forEach(function(marker) {
-	if (marker.byteMarker === 0xFFE1) { //APP1 segment (usually exif/adobe metadata)
-		var id = readJpegApp1Id(marker.offset, buffer); //get the ID of the APP1-segment to determine the type
+
+	//APP1 segment (usually exif/adobe metadata)
+	if (marker.byteMarker === 0xFFE1) {
+
+		//get the ID of the APP1-segment to determine the type
+		var id = readJpegApp1Id(marker.offset, buffer); 
 		if (id === "Exif") {
-			var exif = readJpegExif(marker.offset, buffer); //read the segment as EXIF data
+
+			//read the segment as EXIF metadata
+			var exif = readJpegExif(marker.offset, buffer); 
 			if (exif.hasOwnAttribute("ifd0")) {
-				exif.ifd0.tagList.forEach(function(tag) { //iterate over every tag in the first Image File Directory
+				
+				//console.log every tag in the first Image File Directory
+				exif.ifd0.tagList.forEach(function(tag) {
 					var valueReadableByHumans = parseJpegTagValue(tag, TIFF_IMAGE_TAGS);
 					console.log(tag.name+": "+valueReadableByHumans);
 				});
