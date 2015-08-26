@@ -43,3 +43,21 @@ markers.forEach(function(marker) {
 });
 
 ```
+
+Dictionaries
+------------
+There are a number of dictionary-like objects in several of the files that can be used to convert values to something more legible by humans.
+Most notably in app1.dictionary.js, which holds a number of methods for converting raw EXIF-tags to text values.
+
+app1.dictionary.js:
+* TIFF_IMAGE_TAGS (information about tags stored in IFD0/IFD1. General Image tags)
+* TIFF_PHOTO_TAGS (information about tags stored in Exif sub-IFDs. Photography tags from digital cameras)
+* TIFF_GPS_TAGS (information about tags stored in GPS sub-IFDs.)
+* TIFF_IOP_TAGS (information about tags stored in IOP sub-IFDS (Interoperability information))
+
+iptc.js: 
+* IPTC_ENVELOPE_TAGS (8BIM tag information)
+* IPTC_APPLICATION2_TAGS (8BIM tag information)
+
+markers.js:
+* JPEG_MARKERS (names of JPEG bytemarkers)
