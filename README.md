@@ -29,10 +29,10 @@ markers.forEach(function(marker) {
 		if (id === "Exif") {
 
 			//read the segment as EXIF metadata
-			var exif = readJpegExif(marker.offset, buffer); 
+			var exif = readJpegExif(marker.offset, buffer);
+			
+			//console.log every tag in the first Image File Directory (IFD0)
 			if (exif.hasOwnAttribute("ifd0")) {
-				
-				//console.log every tag in the first Image File Directory
 				exif.ifd0.tagList.forEach(function(tag) {
 					var valueReadableByHumans = parseJpegTagValue(tag, TIFF_IMAGE_TAGS);
 					console.log(tag.name+": "+valueReadableByHumans);
