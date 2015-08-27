@@ -14,7 +14,7 @@ var reader = new FileReaderSync()
 var buffer = reader.readAsArrayBuffer(jpeg);
 
 //build a list of every JPEG marker in the file
-var markers = readJpegMarkersList(buffer);
+var markers = findJpegMarkers(buffer);
 
 //iterate over the markers, to find any EXIF segments present in the file.
 markers.forEach(function(marker) {
