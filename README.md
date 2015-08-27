@@ -1,14 +1,15 @@
 js-read-jpeg
 ============
 
-A collection of functions for reading segments of a JPEG file.
+A collection of functions for reading and parsing segments of bytes in JPEG files.
 
 
 Example Usage
 ------------
-
 ```Javascript
-//load a JPEG and console.log every tag in the first IFD if there is EXIF metadata present in the JPEG.
+/* 	Sample code that loads a JPEG and look for EXIF metadata.
+	If EXIF metadata is found, console.log the first set of EXIF tags found (every tag in IFD0).
+*/
 
 //load a JPEG file, make a buffer
 var jpeg = {}; //A JPEG-file selected with drag&drop or whatever
