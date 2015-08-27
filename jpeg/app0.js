@@ -39,6 +39,8 @@ function readJpegJFIF(offset, buffer) {
 			id: id,
 			length: length,
 			thumbnailFormat: array[offset+9],
+
+			//not yet implemented.
 			data: null, //http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_extension_.28JFXX.29_segment_format
 		};
 	}
