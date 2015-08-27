@@ -1,13 +1,9 @@
 Resources and notes
 ===================
-A list of related reading-material and reference-code.
+An unsorted list of links to related reading-material and code references.
 
-The link I found the most useful for understanding EXIF and TIFF:
 * [Japanese Exif description](http://www.media.mit.edu/pia/Research/deepview/exif.html)
-
-A possible major source of confusion:
 * [Microsoft Patented padding (marker 0xEA1C)](http://www.freepatentsonline.com/7421451.html)
-
 * [Common JPEG markers](http://en.wikipedia.org/wiki/JPEG#Syntax_and_structure)
 * [exif tag-descriptions](http://www.exiv2.org/tags.html)
 * [exif tags](http://www.sno.phy.queensu.ca/~phil/exiftool/TagNames/EXIF.html)
@@ -20,15 +16,13 @@ A possible major source of confusion:
 * [JPEG markers](http://en.wikibooks.org/wiki/JPEG_-_Idea_and_Practice/The_header_part)
 * [JPEG decoding breakdown](http://www.xbdev.net/image_formats/jpeg/jpeg.php)
 * [IPTC tags](http://www.exiv2.org/iptc.html)
-
-Stackoverflow
 * [SOS marker parsing](http://stackoverflow.com/questions/26715684/parsing-jpeg-sos-marker)
 * [ECS parsing](http://stackoverflow.com/questions/2467137/parsing-jpeg-file-format-format-of-entropy-coded-segments-ecs)
 * [SOS marker](http://stackoverflow.com/questions/8511326/parsing-jpeg-file-sos-marker)
 
 
-Reference code
-----
+Code references:
+
 Javascript
 * [Another javascript library for reading exif](https://github.com/exif-js/exif-js/blob/master/exif.js)
 * [canvas-method strip all exif](http://removephotodata.com/)
