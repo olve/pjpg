@@ -3,13 +3,10 @@ js-read-jpeg
 
 A collection of functions for reading and parsing segments of bytes in JPEG files.
 
-
 Example Usage
 ------------
 ```Javascript
-/* 	Sample code that loads a JPEG and look for EXIF metadata.
-	If EXIF metadata is found, console.log the first set of EXIF tags found (every tag in IFD0).
-*/
+//Sample code that loads a JPEG and console.logs some EXIF metadata if the file has any.
 
 //load a JPEG file, make a buffer
 var jpeg = {}; //A JPEG-file selected with drag&drop or whatever
@@ -47,9 +44,9 @@ markers.forEach(function(marker) {
 
 Dictionaries
 ------------
-There are a number of dictionary-like objects in several of the files that can be used to convert values to something more legible by humans.
-Most notably in app1.dictionary.js, which holds a number of methods for converting raw EXIF-tags to text values.
+There are a number of dictionary-like objects in several of the files that can be used to convert raw values to something more legible by humans; most notably in app1.dictionary.js which holds a number of methods for converting raw EXIF-tags to text values.
 
+Files with dictionary-objects:
 app1.dictionary.js:
 * TIFF_IMAGE_TAGS (information about tags stored in IFD0/IFD1. General Image tags)
 * TIFF_PHOTO_TAGS (information about tags stored in Exif sub-IFDs. Photography tags from digital cameras)
