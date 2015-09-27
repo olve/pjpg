@@ -3,11 +3,8 @@
     var JPEG_MARKERS (jpeg file markers)
 */
 
-function findJpegMarkers(buffer) {
-    /*
-      get a list of markers, their offsets, and a legible name for the marker (if we know what marker it is).
-      the list is sorted by offset.
-    */
+function readJpegMarkersList(buffer) {
+
     var array = new Uint8Array(buffer);
 
     var markers = [];
@@ -24,6 +21,15 @@ function findJpegMarkers(buffer) {
                     byteMarker: marker,
                 });
             }
+        }
+        else if (array[offset] === 0xEA) {
+          if (array[offset+1] === 0x1C) {
+            markers.push({
+              offset: offset,
+              name: JPEG_MARKERS[0xEA1C],
+              byteMarker: 0xEA1C,
+            });
+          }
         }
         else if (array[offset] == 0x38) { //8
             if (
@@ -44,7 +50,58 @@ function findJpegMarkers(buffer) {
     return markers;
 }
 
+function readJpegMarkers (buffer) {
+/*    catalogue all markers found in a JPEG file.
+      arguments:
+            buffer: JPEG file as byteArray.
+      example return value: {StartOfImage:[0], EndOFImage:[10000], App0:[2], App1:[50, 90]}
+*/
+      var array = new Uint8Array(buffer);
+
+      var markers = {};
+      //check every byte in array for 0xFF (JPEG Marker)
+      for (var offset = 0, len=array.byteLength; offset < len; offset++) {
+            if (array[offset] === 0xFF) {
+                  var marker = array[offset+1];
+                  if (marker !== 0xFF && marker !== 0) {
+                        //if the trailing byte is not 0xFF or 0, we've found a real marker.
+                        marker += (0xFF<<8); //turn 2 chars into a short
+                        if (JPEG_MARKERS.hasOwnProperty(marker)) {
+                              var name = JPEG_MARKERS[marker];
+                              if (markers.hasOwnProperty(name)) {
+                                    markers[name].push(offset);
+                              }
+                              else {
+                                    markers[name] = [offset];
+                              }
+                        }
+                  }
+            }
+
+            else if (array[offset] === 0x38) { //8
+                  if (
+                        array[offset+1] === 0x42 && //B
+                        array[offset+2] === 0x49 && //I
+                        array[offset+3] === 0x4D && //M
+                        array[offset+4] === 0x04 &&
+                        array[offset+5] === 0x04
+                  ) {
+                        if (markers.hasOwnProperty("iptc")) {
+                              markers.iptc.push(offset);
+                        }
+                        else {
+                              markers.iptc = [offset];
+                        }
+                  }
+            }
+      }
+      return markers;
+};
+
 var JPEG_MARKERS = {
+      // Microsoft patented padding (http://www.freepatentsonline.com/7421451.html)
+      0xEA1C: "MicrosoftPadding",
+
       // Start of Frame markers, non-differential, Huffman coding
       0xFFC0: "HuffBaselineDCT",
       0xFFC1: "HuffExtSequentialDCT",

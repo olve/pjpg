@@ -26,6 +26,15 @@ function readJpegApp1Id(offset, buffer) {
 	}
 	return id;
 }
+function readJpegApp1Length(offset, buffer) {
+/* read APP1 segment length
+		arguments: 
+			offset: offset of the App1 marker in the file.
+			buffer: JPEG file as byteArray
+*/
+	var view = new DataView(buffer);
+	return view.getUint16(offset+2);
+}
 function readJpegAdobe(offset, buffer) {
 /*	read Adobe XML (App1) 
 	  	arguments: 
@@ -34,11 +43,10 @@ function readJpegAdobe(offset, buffer) {
   	Note:
   		Exif does also use APP1 markers. You can tell adobe and exif App1s apart by an ASCII string which follows directly after the APP1 size-marker.
 */
-	var view = new DataView(buffer);
 	var array = new Uint8Array(buffer);
 
 	var start = offset + 32;
-	var length = view.getUint16(offset+2);
+	var length = readJpegApp1Length(offset, buffer);
 	var stop = start + length;
 	var xml = "";
 
@@ -64,7 +72,7 @@ function readJpegExif(offset, buffer) {
 	var array = new Uint8Array(buffer);
 
 	//total exif data length (does NOT include the app1-marker itself, but DOES include the bytes denoting the length)
-	var length = view.getUint16(offset + 2);
+	var length = readJpegApp1Length(offset, buffer);
 
 	var tiff = offset + 10; //starting offset of TIFF header.
 

@@ -91,25 +91,19 @@ function parseJpegTagValue(tag, dictionary) {
     if (tag.type === 2) {
         value = lettersToString(tag.value);
     }
-    else if (tag.id === 0) {
-        //add dots to GPS version tag.
-        value = tag.value.slice(0, 4).join(".");
-    }
     else if (tag.id === 0x9286 || tag.id === 0x927C) {
         //Exif.Photo.UserComment and Exif MakerNote. type 7 undefined. For writing comments with any encoding.
         value = charsToString(tag.value, tag.littleEndian);
     }
     else if ([0x9c9b, 0x9c9c, 0x9c9d, 0x9c9e, 0x9c9f].indexOf(tag.id) !== -1) {
         //Turn Windows XP tags with UCS2 character encoding into UTF-16 strings. (UCS2 is UTF-16's predecessor and is similar enough for us to read it as UTF16.)
-        //THIS DOES NOT WORK
         if (typeof tag.value[0] === "string") {
-            chars = lettersToCharCodes(tag.value);
+            value = lettersToString(tag.value);
         }
         else {
-            chars = tag.value;
+            value = charsToUTF16String(tag.value, tag.littleEndian)
         }
-        value = charsToUTF16String(chars, tag.littleEndian)
-    }
+    } 
     else {
         value = tag.value;
         if (dictionary) {

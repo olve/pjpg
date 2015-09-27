@@ -1,5 +1,4 @@
 function readJpegGenericSegment(offset, buffer) {
-	/* return raw bytes of a generic jpeg imagedata segment, a DHT or DQT segment, for example. */
 	var view = new DataView(buffer);
 	var array = new Uint8Array(buffer);
 
