@@ -2,7 +2,7 @@ function readJpegComment(offset, buffer) {
 /*	read COM Comment from JPEG
 	  	arguments: 
   			offset: offset of COM marker in the file.
-  			jpeg: JPEG file as byteArray,
+  			buffer: JPEG file as byteArray,
  */
 
  	var view = new DataView(buffer);
