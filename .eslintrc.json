@@ -1,0 +1,39 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "curly": [2, "multi-line"],
+    "strict": [2, "never"],
+    "eqeqeq": [2, "smart"],
+    "no-multi-spaces": 0,
+    "no-alert": 0,
+    "no-underscore-dangle": 0,
+    "new-cap": [0, {
+      "capIsNewExceptions": [
+        "Array",
+        "Boolean",
+        "Date",
+        "Error",
+        "Function",
+        "Number",
+        "Object",
+        "RegExp",
+        "String",
+        "Symbol"
+      ]
+    }],
+    "no-undef": 2,
+    "no-unused-vars": [1, {"vars": "all", "args": "after-used", "argsIgnorePattern": "^_"}],
+    "one-var": [2, {
+      "uninitialized": "always",
+      "initialized": "never"
+    }],
+    "func-names": 0
+  },
+  "globals": {
+
+  }
+}

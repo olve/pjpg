@@ -1,6 +1,6 @@
-function readJpegJFIF(offset, buffer) {
-/*	read JFIF (App0) 
-	  	arguments: 
+module.exports = function readJFIF(offset, buffer) {
+/*	read JFIF (App0)
+	  	arguments:
   			offset: offset of the JFIF (App0) marker in the file.
   			buffer: JPEG file as byteArray,
   	Note:

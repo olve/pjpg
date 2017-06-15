@@ -1,0 +1,20 @@
+
+/*
+	read a generic jpeg segment (sometimes referred to as imagedata)
+
+	example segment:
+	[0xFF,0xXX] //marker
+	[0x00,0x10] //length
+	[0x01]      //value
+	[0x01]      //value
+
+*/
+module.exports = function readSegment(offset, buffer) {
+	var view = new DataView(buffer);
+	var array = new Uint8Array(buffer);
+
+	var length = view.getUint16(offset + 2);
+	var end = length + offset + 2;
+
+	return Array.prototype.slice.call(array).slice(offset, end);
+}
