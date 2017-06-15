@@ -1,7 +1,11 @@
 {
   "name": "parsejpeg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/olve/parsejpeg.git"
+  },
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --ext js src/index"
