@@ -3,14 +3,14 @@ const webpack = require('webpack')
 
 module.exports = {
 
-  entry: {
-    main: './src/index.js',
-  },
-
+  entry: './src/index.js',
+  devtool: 'source-map',
   output: {
       path: path.join(__dirname, './dist'),
       filename: 'index.js',
-      publicPath: '/'
+      library: 'parsejpeg',
+      libraryTarget: 'var',
+      umdNamedDefine: true
   },
 
   module: {
@@ -40,24 +40,18 @@ module.exports = {
   },
 
   resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js']
   },
 
-
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }),
     new webpack.optimize.UglifyJsPlugin({
       beautify: false,
       mangle: {
         keep_fnames: true
       },
-      comments: false
+      comments: false,
+      sourceMap: true,
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
-    })
   ]
+
 }
