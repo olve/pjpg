@@ -1,7 +1,7 @@
 {
-  "name": "parsejpeg",
+  "name": "pjpg",
   "version": "0.0.2",
-  "description": "",
+  "description": "parse jpeg - read jpeg metadata",
   "repository": {
       "type": "git",
       "url": "https://github.com/olve/parsejpeg.git"
