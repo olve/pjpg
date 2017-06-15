@@ -1,16 +1,17 @@
 {
-  "name": "pjpg",
-  "version": "0.0.2",
-  "description": "parse jpeg - read jpeg metadata",
-  "repository": {
-      "type": "git",
-      "url": "https://github.com/olve/pjpg.git"
-  },
-  "main": "src/index.js",
-  "scripts": {
-    "lint": "eslint --ext js src/index"
-  },
-  "devDependencies": {
-    "eslint": "3.15.0"
-  }
+    "name": "pjpg",
+    "version": "0.0.2",
+    "description": "parse jpeg - read jpeg metadata",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/olve/pjpg.git"
+    },
+    "main": "src/index.js",
+    "scripts": {
+        "lint": "eslint --ext js src/index"
+    },
+    "devDependencies": {
+        "babel-eslint": "7.2.3",
+        "eslint": "3.15.0"
+    }
 }
