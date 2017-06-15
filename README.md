@@ -1,4 +1,4 @@
-parsejpeg
+pjpg - parse jpeg
 ============
 A collection of functions for reading and parsing segments of bytes in JPEG files.
 
