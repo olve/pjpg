@@ -1,4 +1,4 @@
-export default function readIPTC(offset, buffer) {
+module.exports = function readIPTC(offset, buffer) {
 /*	read 8BIM metadata stored in a JPEG as IPTC.
 	  	arguments:
   			buffer: JPEG file as byteArray,

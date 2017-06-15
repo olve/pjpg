@@ -1,4 +1,4 @@
-export default function charsToUTF16String(chars, littleEndian) {
+module.exports = function charsToUTF16String(chars, littleEndian) {
     //combine chars to a UTF16 string [0, 0x24, 0xD8, 0x52, 0xDF, 0x62] -> "$𤭢"
     var i = 0;
     var step = 1;

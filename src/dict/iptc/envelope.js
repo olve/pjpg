@@ -1,6 +1,6 @@
 //IPTC ENVELOPE TAGS
 
-export default {
+module.exports = {
     0x0000: {
         "desc": "A binary number identifying the version of the Information Interchange Model",
         "fullname": "Iptc.Envelope.ModelVersion",

@@ -1,4 +1,4 @@
-export default function readComment(offset, buffer) {
+module.exports = function readComment(offset, buffer) {
 /*	read COM Comment from JPEG
 	  	arguments:
   			offset: offset of COM marker in the file.

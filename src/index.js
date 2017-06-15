@@ -1,17 +1,13 @@
-export readAdobe from './adobe'
-export readComment from './comment'
-export readIPTC from './iptc'
-export readJFIF from './jfif'
-export readMarkers from './markers'
-export readMicrosoftPadding from './microsoftPadding'
-export readSegment from './generic'
-export exif from './exif'
+module.exports.readMicrosoftPadding = require('./microsoftPadding')
+module.exports.readComment = require('./comment')
+module.exports.readMarkers = require('./markers')
+module.exports.readSegment = require('./generic')
+module.exports.readAdobe = require('./adobe')
+module.exports.readIPTC = require('./iptc')
+module.exports.readJFIF = require('./jfif')
+module.exports.exif = require('./exif')
 
-export util from './util'
-export app1 from './app1'
+module.exports.util = require('./util')
+module.exports.app1 = require('./app1')
 
-export dict from './dict'
-
-export default {
-  test: 1
-}
+module.exports.dict = require('./dict')

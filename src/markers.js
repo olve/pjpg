@@ -1,10 +1,10 @@
-import { jpeg } from './dict'
+var jpeg = require('./dict').jpeg
 
 /*
   read all markers from a jpeg array buffer to an array
 */
 
-export default function readMarkers(buffer) {
+module.exports = function readMarkers(buffer) {
 
     var array = new Uint8Array(buffer);
 

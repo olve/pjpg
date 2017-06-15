@@ -1,4 +1,4 @@
-import {lettersToString, charsToString, charsToUTF16String} from '../util'
+var util = require('../util')
 
 function getValue(tagId, dictionary, attribute) {
   if (dictionary) {
@@ -34,19 +34,19 @@ function parseValue(tag, dictionary) {
     var value;
 
     if (tag.type === 2) {
-        value = lettersToString(tag.value);
+        value = util.lettersToString(tag.value);
     }
     else if (tag.id === 0x9286 || tag.id === 0x927C) {
         //Exif.Photo.UserComment and Exif MakerNote. type 7 undefined. For writing comments with any encoding.
-        value = charsToString(tag.value, tag.littleEndian);
+        value = util.charsToString(tag.value, tag.littleEndian);
     }
     else if ([0x9c9b, 0x9c9c, 0x9c9d, 0x9c9e, 0x9c9f].indexOf(tag.id) !== -1) {
         //Turn Windows XP tags with UCS2 character encoding into UTF-16 strings. (UCS2 is UTF-16's predecessor and is similar enough for us to read it as UTF16.)
         if (typeof tag.value[0] === "string") {
-            value = lettersToString(tag.value);
+            value = util.lettersToString(tag.value);
         }
         else {
-            value = charsToUTF16String(tag.value, tag.littleEndian)
+            value = util.charsToUTF16String(tag.value, tag.littleEndian)
         }
     }
     else {
@@ -61,10 +61,11 @@ function parseValue(tag, dictionary) {
     return value;
 }
 
-export jpeg from './jpeg'
-export tiff from './tiff'
-export iptc from './iptc'
 
-export default {
-  getValue, getStringValues, parseValue
-}
+module.exports.jpeg = require('./jpeg')
+module.exports.tiff = require('./tiff')
+module.exports.iptc = require('./iptc')
+
+module.exports.getValue = getValue
+module.exports.getStringValues = getStringValues
+module.exports.parseValue = parseValue

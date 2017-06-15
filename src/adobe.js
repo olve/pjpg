@@ -1,6 +1,6 @@
-import { readLength } from './app1'
+var readLength = require('./app1').readLength
 
-export default function readAdobe(offset, buffer) {
+module.exports = function readAdobe(offset, buffer) {
 /*	read Adobe XML (App1)
 	  	arguments:
   			offset: offset of the Adobe (App1) marker in the file.

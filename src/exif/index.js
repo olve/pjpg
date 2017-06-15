@@ -1,10 +1,10 @@
-import { readLength } from '../app1'
-import readIFD from './readIFD'
+var readIFD = require('./readIFD')
+var readLength = require('../app1').readLength
 
-export readIFD from './readIFD'
-export readTag from './readTag'
+module.exports.readIFD = readIFD
+module.exports.readTag = require('./readTag')
 
-export default function readExif(offset, buffer) {
+module.exports.readExif = function readExif(offset, buffer) {
 /*	read Exif tags (App1 marker)
 	  	arguments:
   			offset: offset of the Exif (App1) marker in the file.

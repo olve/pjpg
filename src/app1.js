@@ -1,4 +1,4 @@
-export function readID(offset, buffer) {
+module.exports.readID = function readID(offset, buffer) {
 /*	read The ID following an APP1 marker, used to tell APP1 types apart (adobe/exif)
 		arguments:
 			offset: offset of an APP1 marker in a JPEG file
@@ -14,7 +14,7 @@ export function readID(offset, buffer) {
 	}
 	return id;
 }
-export function readLength(offset, buffer) {
+module.exports.readLength = function readLength(offset, buffer) {
 /* read APP1 segment length
 		arguments:
 			offset: offset of the App1 marker in the file.

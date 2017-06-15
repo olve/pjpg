@@ -9,7 +9,7 @@
 	[0x01]      //value
 
 */
-export default function readSegment(offset, buffer) {
+module.exports = function readSegment(offset, buffer) {
 	var view = new DataView(buffer);
 	var array = new Uint8Array(buffer);
 

@@ -1,4 +1,4 @@
-export default function readJFIF(offset, buffer) {
+module.exports = function readJFIF(offset, buffer) {
 /*	read JFIF (App0)
 	  	arguments:
   			offset: offset of the JFIF (App0) marker in the file.
