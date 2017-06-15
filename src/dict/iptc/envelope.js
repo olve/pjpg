@@ -1,4 +1,4 @@
-//IPTC Envelope tags
+//IPTC ENVELOPE TAGS
 
 export default {
     0x0000: {

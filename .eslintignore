@@ -1,1 +1,3 @@
-src/dictionary/*
+src/dict/jpeg
+src/dict/tiff
+src/dict/iptc

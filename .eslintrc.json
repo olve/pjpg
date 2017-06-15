@@ -1,10 +1,5 @@
 {
   "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
   "env": {
     "node": true,
     "es6": true
@@ -13,11 +8,8 @@
     "curly": [2, "multi-line"],
     "strict": [2, "never"],
     "eqeqeq": [2, "smart"],
-    "quotes": [1, "single"],
-    "semi": [1, "never"],
     "no-multi-spaces": 0,
     "no-alert": 0,
-    "no-var": 2,
     "no-underscore-dangle": 0,
     "new-cap": [0, {
       "capIsNewExceptions": [

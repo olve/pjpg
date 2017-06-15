@@ -1,4 +1,4 @@
-//TIFF PHOTO tags (exif)
+//TIFF PHOTO TAGS (exif)
 
 export default {
     0xea1c: {

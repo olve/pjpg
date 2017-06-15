@@ -1,10 +1,20 @@
-export default function readGeneric(offset, buffer) {
-  //read generic jpeg segment
-  const view = new DataView(buffer)
-  const array = new Uint8Array(buffer)
 
-  const length = view.getUint16(offset + 2)
-  const end = length + offset + 2
+/*
+	read a generic jpeg segment (sometimes referred to as imagedata)
 
-  return Array.from(array).slice(offset, end)
+	example segment:
+	[0xFF,0xXX] //marker
+	[0x00,0x10] //length
+	[0x01]      //value
+	[0x01]      //value
+
+*/
+export default function readSegment(offset, buffer) {
+	var view = new DataView(buffer);
+	var array = new Uint8Array(buffer);
+
+	var length = view.getUint16(offset + 2);
+	var end = length + offset + 2;
+
+	return Array.prototype.slice.call(array).slice(offset, end);
 }

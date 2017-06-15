@@ -1,63 +1,52 @@
+import { jpeg } from './dict'
 
-import JPEG_MARKERS from './dictionary/JPEG'
+/*
+  read all markers from a jpeg array buffer to an array
+*/
 
 export default function readMarkers(buffer) {
 
-  /*
-    Reads all markers found in a jpeg ArrayBuffer to an array of:
-      {
-        offset: 'offset of marker',
-        name: 'marker name',
-        byteMarker: 'bytemarker, e.g. 0xFFE1 (EXIF marker)'
-      }
-  */
+    var array = new Uint8Array(buffer);
 
-  const array = new Uint8Array(buffer)
-  const markers = []
+    var markers = [];
 
-  array.forEach((byte, offset) => {
+    for (var offset = 0, len = array.byteLength; offset < len; offset++) {
 
-    if (byte === 0xFF) {
-
-      let marker = array[offset+1]
-
-      if (marker !== 0xFF && marker !== 0) { //found 0xFF,0xFF (beginning of a marker)
-
-        marker += (0xFF << 8)
-        markers.push({
-          offset,
-          name: JPEG_MARKERS[marker],
-          byteMarker: marker,
-        })
-
-      }
+        if (array[offset] === 0xFF) {
+            var marker = array[offset+1];
+            if (marker !== 0xFF && marker !== 0) {
+                marker += (0xFF<<8);
+                markers.push({
+                    offset: offset,
+                    name: jpeg[marker],
+                    byteMarker: marker,
+                });
+            }
+        }
+        else if (array[offset] === 0xEA) {
+          if (array[offset+1] === 0x1C) {
+            markers.push({
+              offset: offset,
+              name: jpeg[0xEA1C],
+              byteMarker: 0xEA1C,
+            });
+          }
+        }
+        else if (array[offset] === 0x38) { //8
+            if (
+                array[offset+1] === 0x42 && //B
+                array[offset+2] === 0x49 && //I
+                array[offset+3] === 0x4D && //M
+                array[offset+4] === 0x04 &&
+                array[offset+5] === 0x04
+            ) {
+                markers.push({
+                    offset: offset,
+                    name: "iptc",
+                    byteMarker: 0x38,
+                });
+            }
+        }
     }
-
-    else if (byte === 0xEA && array[offset+1] === 0x1C) { //found 0xEA, 0x1C (windows padding marker)
-      markers.push({
-        offset,
-        name: JPEG_MARKERS[0xEA1C],
-        byteMarker: 0xEA1C
-      })
-    }
-    else if (byte === 0x38) {         //8
-      if (
-          array[offset+1] === 0x42 && //B
-          array[offset+2] === 0x49 && //I
-          array[offset+3] === 0x4D && //M
-          array[offset+4] === 0x04 &&
-          array[offset+5] === 0x04
-      ) {                            //found 8bim (iptc) marker
-        markers.push({
-          offset,
-          name: 'iptc',
-          byteMarker: 0x38
-        })
-      }
-    }
-
-  })
-
-  return markers
-
+    return markers;
 }

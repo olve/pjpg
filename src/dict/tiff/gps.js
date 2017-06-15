@@ -1,5 +1,5 @@
+//TIFF GPS TAGS
 
-//TIFF_GPS_TAGS (exif)
 export default {
     0xea1c: {
         "chr": "B",

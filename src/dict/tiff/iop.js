@@ -1,4 +1,4 @@
-//TIFF_IOP_TAGS (interoperability, exif)
+//TIFF INTEROPERABILITY TAGS (exif)
 
 export default {
     0xea1c: {

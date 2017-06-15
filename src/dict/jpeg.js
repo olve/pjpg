@@ -1,4 +1,4 @@
-//JPEG Markers
+//JPEG MARKERS
 
 export default {
       // Microsoft patented padding (http://www.freepatentsonline.com/7421451.html)

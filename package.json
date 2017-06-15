@@ -2,7 +2,7 @@
   "name": "js-read-jpeg",
   "version": "0.0.1",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "eslint --ext js schema index",
     "start": "babel-node src/index.js",

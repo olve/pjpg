@@ -1,21 +1,18 @@
 export default function readComment(offset, buffer) {
+/*	read COM Comment from JPEG
+	  	arguments:
+  			offset: offset of COM marker in the file.
+  			buffer: JPEG file as byteArray,
+ */
 
-  /*	read COM Comment from JPEG to string
-  	  	arguments:
-    			offset: offset of COM marker in the file.
-    			buffer: JPEG file as byteArray,
-   */
+ 	var view = new DataView(buffer);
+ 	var array = new Uint8Array(buffer);
 
-   const view = new DataView(buffer)
-   const array = new Uint8Array(buffer)
+ 	var length = view.getUint16(offset+2) + 2; //the length-indicator itself is included in the length.
 
-   const length = view.getUint16(offset+2) + 2
-
-   let comment = ''
-   for (let i = offset+4, stop = offset+length; i < stop; i++) {
-     comment += String.fromCharCode(array[i])
-   }
-
-   return comment
-
-}
+ 	var comment = "";
+ 	for (var i = offset+4, stop = offset+length; i < stop; i++) {
+ 		comment += String.fromCharCode(array[i]);
+ 	}
+ 	return comment;
+};

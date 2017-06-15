@@ -8,50 +8,42 @@ export default function readJFIF(offset, buffer) {
   		Reading JFXX is not yet implemented.
 */
 
-  const view = new DataView(buffer)
-  const array = new Uint8Array(buffer)
+	var view = new DataView(buffer);
+	var array = new Uint8Array(buffer);
 
-	const length = view.getUint16(offset+2)
+	var length = view.getUint16(offset+2);
+	var id = "";
+	for (var i = offset+4, len = offset+8; i < len; i++) {
+		id += String.fromCharCode(array[i]);
+	}
+	if (id === "JFIF") {
+		var self = {
+			id: id,
+			length: length,
+			version: array[offset+9] + "." + array[offset+10],
+			densityUnits: array[offset+11],
+			xDensity: view.getUint16(offset+12),
+			yDensity: view.getUint16(offset+14),
+			thumbnailWidth: array[offset+16],
+			thumbnailHeight: array[offset+17],
+		};
+		var start = offset + 18;
+		var stop = offset + 18 + (3*self.thumbnailWidth*self.thumbnailHeight);
 
-	let id = ''
+		//embedded thumbnail image-data as array of bytes.
+		self.data = (start === stop) ? null : Array.prototype.slice.call(array).slice(start, stop);
+		return self;
+	}
+	else if (id === "JFXX") {
+		return {
+			id: id,
+			length: length,
+			thumbnailFormat: array[offset+9],
 
-  for (let i = offset+4, len = offset+8; i < len; i++) {
-    id += String.fromCharCode(array[i])
-  }
+			//not yet implemented.
+			data: null, //http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_extension_.28JFXX.29_segment_format
+		};
+	}
 
-  if (id === 'JFIF') {
-
-    const segment = {
-      id,
-      length,
-      version: array[offset+9] + '.' + array[offset+10],
-      densityUnits: array[offset+11],
-      xDensity: view.getUint16(offset+12),
-      yDensity: view.getUint16(offset+14),
-      thumbnailWidth: array[offset+16],
-      thumbnailHeight: array[offset+17],
-    }
-
-    const start = offset + 18
-    const stop = offset + 18 + (3 * segment.thumbnailWidth + segment.thumbnailHeight)
-
-    segment.data = (start === stop) ? null : Array.from(array).slice(start, stop)
-
-    return segment
-
-  }
-  else if (id === 'JFXX') {
-    return {
-      id,
-      length,
-      thumbnailFormat: array[offset+9],
-
-      //not yet implemented
-      data: null //http://en.wikipedia.org/wiki/JPEG_File_Interchange_Format#JFIF_extension_.28JFXX.29_segment_format
-    }
-  }
-  else {
-    return null
-  }
-
-}
+	return null;
+};
