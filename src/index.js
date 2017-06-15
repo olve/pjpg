@@ -11,3 +11,7 @@ export util from './util'
 export app1 from './app1'
 
 export dict from './dict'
+
+export default {
+  test: 1
+}

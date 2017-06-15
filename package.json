@@ -4,9 +4,21 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint --ext js schema index",
+    "lint": "eslint --ext js index",
     "start": "babel-node src/index.js",
     "build": "webpack -p"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "stage-0"
+    ],
+    "plugins": [
+      "syntax-class-properties",
+      "transform-class-properties",
+      "transform-decorators-legacy",
+      "transform-runtime"
+    ]
   },
   "devDependencies": {
     "babel-cli": "6.23.0",
