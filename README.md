@@ -1,4 +1,4 @@
-pjpg - parse jpeg
+pjpg - parse jpegs
 ============
 A collection of functions for reading and parsing segments of bytes in JPEG files.
 
@@ -22,7 +22,7 @@ Example Usage
 //Sample code that loads a JPEG and console.logs some EXIF metadata if the file has any.
 
 import fs from 'fs'
-import parsejpeg from 'parsejpeg'
+import pjpg from 'pjpg'
 
 //load a JPEG file, make a buffer
 const jpeg = fs.readFileSync('./IMG_0466.jpg')
@@ -30,7 +30,7 @@ const buffer = new ArrayBuffer(jpeg.byteLength)
 new Uint8Array(buffer).set(jpeg)
 
 //build a list of every JPEG marker in the file
-const markers = parsejpeg.readMarkers(buffer)
+const markers = pjpg.readMarkers(buffer)
 
 markers.forEach(marker => {
 
@@ -38,18 +38,18 @@ markers.forEach(marker => {
 	if (marker.byteMarker === 0xFFE1) {
 
 		//get the ID of the APP1-segment to determine the type
-		const id = parsejpeg.app1.readID(marker.offset, buffer)
+		const id = pjpg.app1.readID(marker.offset, buffer)
 		if (id === 'Exif') {
 
 			//read the segment as EXIF metadata
 
-			const exif = parsejpeg.exif.readExif(marker.offset, buffer)
+			const exif = pjpg.exif.readExif(marker.offset, buffer)
 
 			//console.log every tag in the first Image File Directory (IFD0)
 			if (exif.hasOwnProperty('ifd0')) {
 				exif.ifd0.tagList.forEach(tag => {
-					const valueReadableByHumans = parsejpeg.dict.parseValue(tag, parsejpeg.dict.tiff.image)
-					const tagName = parsejpeg.dict.getValue(tag.id, parsejpeg.dict.tiff.image, 'name')
+					const valueReadableByHumans = pjpg.dict.parseValue(tag, pjpg.dict.tiff.image)
+					const tagName = pjpg.dict.getValue(tag.id, pjpg.dict.tiff.image, 'name')
 					console.log(`${tagName}: ${valueReadableByHumans}`)
 				})
 			}
