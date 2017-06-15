@@ -48,8 +48,8 @@ markers.forEach(marker => {
 			//console.log every tag in the first Image File Directory (IFD0)
 			if (exif.hasOwnProperty('ifd0')) {
 				exif.ifd0.tagList.forEach(tag => {
-					const valueReadableByHumans = pjpg.dict.parseValue(tag, pjpg.dict.tiff.image)
-					const tagName = pjpg.dict.getValue(tag.id, pjpg.dict.tiff.image, 'name')
+					const valueReadableByHumans = pjpg.dict.tiff.image.parseValue(tag)
+					const tagName = pjpg.dict.tiff.image.getValue(tag.id, 'name')
 					console.log(`${tagName}: ${valueReadableByHumans}`)
 				})
 			}
