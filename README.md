@@ -16,20 +16,21 @@ A collection of functions for reading and parsing segments of bytes in JPEG file
 - dict
 
 
-
 Example Usage
 ------------
 ```Javascript
 //Sample code that loads a JPEG and console.logs some EXIF metadata if the file has any.
 
-import * as parsejpeg from 'parsejpeg'
+import fs from 'fs'
+import parsejpeg from 'parsejpeg'
 
 //load a JPEG file, make a buffer
-const jpeg = {} //A JPEG-file selected with drag&drop or whatever
-const buffer = new FileReaderSync().readAsArrayBuffer(jpeg)
+const jpeg = fs.readFileSync('./IMG_0466.jpg')
+const buffer = new ArrayBuffer(jpeg.byteLength)
+new Uint8Array(buffer).set(jpeg)
 
 //build a list of every JPEG marker in the file
-const markers = parsejpeg.readMarkers(jpeg)
+const markers = parsejpeg.readMarkers(buffer)
 
 markers.forEach(marker => {
 
@@ -41,14 +42,15 @@ markers.forEach(marker => {
 		if (id === 'Exif') {
 
 			//read the segment as EXIF metadata
+
 			const exif = parsejpeg.exif.readExif(marker.offset, buffer)
 
-
 			//console.log every tag in the first Image File Directory (IFD0)
-			if (exif.hasOwnAttribute('ifd0')) {
+			if (exif.hasOwnProperty('ifd0')) {
 				exif.ifd0.tagList.forEach(tag => {
 					const valueReadableByHumans = parsejpeg.dict.parseValue(tag, parsejpeg.dict.tiff.image)
-					console.log(`${tag.name}: ${valueReadableByHumans}`)
+					const tagName = parsejpeg.dict.getValue(tag.id, parsejpeg.dict.tiff.image, 'name')
+					console.log(`${tagName}: ${valueReadableByHumans}`)
 				})
 			}
 		}
