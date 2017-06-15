@@ -73,7 +73,7 @@ function assignHelpers(dict) {
 }
 
 
-module.expots.parseValue = parseValue
+module.exports.parseValue = parseValue
 module.exports.getStringValues = getStringValues
 module.exports.getValue = getValue
 module.exports.assignHelpers = assignHelpers
