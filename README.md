@@ -63,12 +63,12 @@ Dictionaries
 there are a number of dictionary-like objects that can be used to convert raw tag values to something more legible.
 
 ##### dicts:
-- dict.tiff.image (information about tags stored in IFD0/IFD1. General Image tags)
-- dict.tiff.photo (information about tags stored in Exif sub-IFDs. Photography tags from digital cameras)
-- dict.tiff.gps (information about tags stored in GPS sub-IFDs.)
-- dict.tiff.iop (information about tags stored in IOP sub-IFDS (Interoperability information))
+- **dict.tiff.image** (information about tags stored in IFD0/IFD1. General Image tags)
+- **dict.tiff.photo** (information about tags stored in Exif sub-IFDs. Photography tags from digital cameras)
+- **dict.tiff.gps** (information about tags stored in GPS sub-IFDs.)
+- **dict.tiff.iop** (information about tags stored in IOP sub-IFDS (Interoperability information))
 
-- dict.iptc.envelope (8BIM tag information)
-- dict.iptc.application2 (8BIM tag information)
+- **dict.iptc.envelope** (8BIM tag information)
+- **dict.iptc.application2** (8BIM tag information)
 
-- dict.jpeg (names of JPEG bytemarkers)
+- **dict.jpeg** (names of JPEG bytemarkers)
