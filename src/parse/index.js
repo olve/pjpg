@@ -1,18 +1,7 @@
-import readMarkers from '../markers'
+import Jpeg from './Jpeg'
 
-import Segment from './Segment'
-
-export default class JpegParser {
-
-  constructor(file, buffer) {
-    //<FileData>, ArrayBuffer
-
-    this.file = file
-    this.buffer = buffer
-
-    this.markers = readMarkers(this.buffer)
-    this.segments = this.markers.map(marker => new Segment(marker, this.buffer))
-  }
-
-
+export default function parseJpeg(file, buffer) {
+  //<FileData>, ArrayBuffer
+  
+  return Jpeg(file, buffer)
 }

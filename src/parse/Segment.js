@@ -1,17 +1,17 @@
 import pjpg from 'pjpg'
 
-import parseMicrosoftPadding from './parse/microsoftPadding'
-import parseGeneric from './parse/generic'
-import parseComment from './parse/comment'
-import parseAdobe from './parse/adobe'
-import parseExif from './parse/exif'
+import parseMicrosoftPadding from './microsoftPadding'
+import parseGeneric from './generic'
+import parseComment from './comment'
+import parseAdobe from './adobe'
+import parseExif from './exif'
 
 export default class Segment {
   constructor({offset, name, byteMarker}, buffer) {
     /*  marker: { offset, name, byteMarker } */
 
     this._buffer = buffer
-    
+
     this.offset = offset,
     this.name = name
     this.byteMarker = byteMarker
