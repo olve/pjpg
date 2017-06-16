@@ -1,12 +1,12 @@
-module.exports = function readComment(offset, buffer) {
+export default function readComment(offset, jpeg) {
 /*	read COM Comment from JPEG
 	  	arguments:
   			offset: offset of COM marker in the file.
   			buffer: JPEG file as byteArray,
  */
 
- 	var view = new DataView(buffer);
- 	var array = new Uint8Array(buffer);
+  var array = jpeg.array
+ 	var view = jpeg.view
 
  	var length = view.getUint16(offset+2) + 2; //the length-indicator itself is included in the length.
 

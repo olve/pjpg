@@ -9,9 +9,9 @@
 	[0x01]      //value
 
 */
-module.exports = function readSegment(offset, buffer) {
-	var view = new DataView(buffer);
-	var array = new Uint8Array(buffer);
+export default function readSegment(offset, jpeg) {
+	var view = jpeg.view
+	var array = jpeg.array
 
 	var length = view.getUint16(offset + 2);
 	var end = length + offset + 2;

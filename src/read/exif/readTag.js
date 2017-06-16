@@ -1,4 +1,4 @@
-module.exports = function readTag(id, offset, tiff, view, littleEndian) {
+export default function readTag(id, offset, tiff, view, littleEndian) {
 
 	if (id === 0xEA1C) return null; //Windows padding tags. We skip these. They link to gigantic arrays of null bytes.
 

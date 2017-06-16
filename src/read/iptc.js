@@ -1,4 +1,4 @@
-module.exports = function readIPTC(offset, buffer) {
+export default function readIPTC(offset, jpeg) {
 /*	read 8BIM metadata stored in a JPEG as IPTC.
 	  	arguments:
   			buffer: JPEG file as byteArray,
@@ -8,8 +8,9 @@ module.exports = function readIPTC(offset, buffer) {
   		The tag stored in the file does not record any information about it's type, but you can look it up by the tag ID.
  */
 
-    var array = new Uint8Array(buffer);
-    var view = new DataView(buffer);
+  var array = jpeg.array
+  var view = jpeg.view
+  var buffer = jpeg.buffer
 
     //find end of iptc header
 	var nameHeaderLength = array[offset+7];

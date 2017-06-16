@@ -1,15 +1,15 @@
-module.exports = function readJFIF(offset, buffer) {
+export default function readJFIF(offset, jpeg) {
 /*	read JFIF (App0)
 	  	arguments:
   			offset: offset of the JFIF (App0) marker in the file.
-  			buffer: JPEG file as byteArray,
+				jpeg: JPEG file as: { buffer, array, view }
   	Note:
   		JFIF/JFXX is used for embedding thumbnails.
   		Reading JFXX is not yet implemented.
 */
 
-	var view = new DataView(buffer);
-	var array = new Uint8Array(buffer);
+	var view = jpeg.view
+	var array = jpeg.array
 
 	var length = view.getUint16(offset+2);
 	var id = "";

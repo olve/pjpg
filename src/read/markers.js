@@ -1,12 +1,9 @@
-var jpeg = require('../dict').jpeg
+import { jpeg as jpegDict } from '../dict'
 
-/*
-  read all markers from a jpeg array buffer to an array
-*/
+//read all markers from a jpeg array buffer to an array
+export default function readMarkers(jpeg) {
 
-module.exports = function readMarkers(buffer) {
-
-    var array = new Uint8Array(buffer);
+    var array = jpeg.array
 
     var markers = [];
 
@@ -18,7 +15,7 @@ module.exports = function readMarkers(buffer) {
                 marker += (0xFF<<8);
                 markers.push({
                     offset: offset,
-                    name: jpeg[marker],
+                    name: jpegDict[marker],
                     byteMarker: marker,
                 });
             }
@@ -27,7 +24,7 @@ module.exports = function readMarkers(buffer) {
           if (array[offset+1] === 0x1C) {
             markers.push({
               offset: offset,
-              name: jpeg[0xEA1C],
+              name: jpegDict[0xEA1C],
               byteMarker: 0xEA1C,
             });
           }

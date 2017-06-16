@@ -1,6 +1,6 @@
-var readTag = require('./readTag')
+import readTag from './readTag'
 
-module.exports = function readIFD(offset, tiff, view, littleEndian) {
+export default function readIFD(offset, tiff, view, littleEndian) {
 	//read exif Image File Directory
 
 	var offset = tiff + offset; //offsets and address references consider the beginning of the tiff-header position 0.
