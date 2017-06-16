@@ -1,7 +1,7 @@
 import Jpeg from './Jpeg'
 
-export default function parseJpeg(file, buffer) {
-  //<FileData>, ArrayBuffer
-  
-  return Jpeg(file, buffer)
+export default function parseJpeg(buffer) {
+  //buffer: JPEG file as ArrayBuffer
+
+  return new Jpeg(buffer)
 }

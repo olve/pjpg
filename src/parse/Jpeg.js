@@ -1,13 +1,12 @@
-import readMarkers from '../markers'
+import readMarkers from '../read/markers'
 
 import Segment from './Segment'
 
 export default class ParsedJpeg {
 
-  constructor(file, buffer) {
-    //<FileData>, ArrayBuffer
+  constructor(buffer) {
+    //buffer: JPEG file as ArrayBuffer
 
-    this.file = file
     this.buffer = buffer
 
     this.markers = readMarkers(this.buffer)

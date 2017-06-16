@@ -1,8 +1,8 @@
-import pjpg from 'pjpg'
+import readComment from '../read/comment'
 
 export default function parseComment(segment) {
 
-  const value = pjpg.readComment(segment.offset, segment.buffer)
+  const value = readComment(segment.offset, segment.buffer)
   const bytes = function() {
 
     const len = value.length

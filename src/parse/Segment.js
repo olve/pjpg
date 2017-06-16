@@ -1,4 +1,4 @@
-import pjpg from 'pjpg'
+import { readID } from '../read/app1'
 
 import parseMicrosoftPadding from './microsoftPadding'
 import parseGeneric from './generic'
@@ -31,10 +31,10 @@ export default class Segment {
         return parseComment(this)
 
       case 0xFFE1: //App1 (almost always Exif or Adobe)
-        const id = pjpg.app1.readID(this.offset, this._buffer)
-        if (id === 'Exif') return parseExif(this)
+        const id = readID(this.offset, this._buffer)
+        if (id === 'Exif')             return parseExif(this)
         else if (id.includes('adobe')) return parseAdobe(this)
-        else return parseGeneric(this)
+        else                           return parseGeneric(this)
     }
   }
 
