@@ -1,7 +1,21 @@
-import Jpeg from './Jpeg'
+import readMarkers from '../read/markers'
+import Segment from './Segment'
 
-export default function parseJpeg(buffer) {
-  //buffer: JPEG file as ArrayBuffer
+class ParsedJpeg {
 
-  return new Jpeg(buffer)
+  constructor(buffer) {
+    //buffer: JPEG file as ArrayBuffer
+
+    this.buffer = buffer
+
+    this.markers = readMarkers(this.buffer)
+    this.segments = this.markers.map(marker => new Segment(marker, this.buffer))
+  }
+
+
 }
+
+
+
+////buffer: JPEG file as ArrayBuffer
+export default function parseJpeg(buffer) { return new ParsedJpeg(buffer) }
