@@ -42,7 +42,6 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.SourceMapDevToolPlugin(),
         new webpack.LoaderOptionsPlugin({
           minimize: true,
           debug: false
