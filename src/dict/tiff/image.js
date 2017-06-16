@@ -1,6 +1,6 @@
 //TIFF IMAGE TAGS (exif)
 
-module.exports = {
+export default {
     0xea1c: {
         "chr": "B",
         "desc": "Microsoft Padding (http://www.freepatentsonline.com/7421451.html)",

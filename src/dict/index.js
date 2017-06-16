@@ -1,4 +1,4 @@
-module.exports.jpeg = require('./jpeg')
-module.exports.tiff = require('./tiff')
-module.exports.iptc = require('./iptc')
-module.exports.helpers = require('./helpers')
+export jpeg from './jpeg'
+export tiff from './tiff'
+export iptc from './iptc'
+export helpers from './helpers'

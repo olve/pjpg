@@ -1,18 +1,16 @@
-var gps = require('./gps')
-var image = require('./image')
-var iop = require('./iop')
-var photo = require('./photo')
+import gps from './gps'
+import image from './image'
+import iop from './iop'
+import photo from './photo'
 
-var assignHelpers = require('../helpers').assignHelpers
-
+import {assignHelpers} from '../helpers'
 
 assignHelpers(gps)
 assignHelpers(image)
 assignHelpers(iop)
 assignHelpers(photo)
 
-
-module.exports.gps = gps
-module.exports.image = image
-module.exports.iop = iop
-module.exports.photo = photo
+export const gps = gps
+export const image = image
+export const photo = photo
+export const iop = iop

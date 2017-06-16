@@ -1,6 +1,6 @@
-var util = require('../util')
+import * as util from './util'
 
-function getValue(tagId, dictionary, attribute) {
+export function getValue(tagId, dictionary, attribute) {
   if (dictionary) {
     const tag = dictionary[tagId]
     if (tag) {
@@ -8,7 +8,7 @@ function getValue(tagId, dictionary, attribute) {
     }
   }
 }
-function getStringValues(tagId, values, dictionary) {
+export function getStringValues(tagId, values, dictionary) {
     //get stringvalues (values legible by humans) from provided dictionary for array of tag values
     //example for values=[2] and tagId=0x9207: "Center-weighted average"
     var output = [];
@@ -29,7 +29,7 @@ function getStringValues(tagId, values, dictionary) {
         return output;
     }
 }
-function parseValue(tag, dictionary) {
+export function parseValue(tag, dictionary) {
 
     var value;
 
@@ -60,7 +60,7 @@ function parseValue(tag, dictionary) {
     }
     return value;
 }
-function assignHelpers(dict) {
+export function assignHelpers(dict) {
   dict.value = function(tagId, attribute) {
     return getValue(tagId, dict, attribute)
   }
@@ -71,9 +71,3 @@ function assignHelpers(dict) {
     return getStringValues(tag.id, dict)
   }
 }
-
-
-module.exports.parseValue = parseValue
-module.exports.getStringValues = getStringValues
-module.exports.getValue = getValue
-module.exports.assignHelpers = assignHelpers

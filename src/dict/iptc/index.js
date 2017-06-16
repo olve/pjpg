@@ -1,10 +1,10 @@
-var envelope = require('./envelope')
-var application2 = require('./application2')
+import envelope from './envelope'
+import application2 from './application2'
 
-var assignHelpers = require('../helpers').assignHelpers
+import { assignHelpers } from '../helpers'
 
 assignHelpers(envelope)
 assignHelpers(application2)
 
-module.exports.envelope = envelope
-module.exports.application2 = application2
+export const envelope = envelope
+export const application2 = application2

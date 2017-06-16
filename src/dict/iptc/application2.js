@@ -1,5 +1,5 @@
 //IPTC APPLICATION2 TAGS
-module.exports = {
+export default {
     0x0000: {
         "desc": "A binary number identifying the version of the Information Interchange Model",
         "fullname": "Iptc.Application2.RecordVersion",
