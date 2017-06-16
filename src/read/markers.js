@@ -1,4 +1,4 @@
-var jpeg = require('./dict').jpeg
+var jpeg = require('../dict').jpeg
 
 /*
   read all markers from a jpeg array buffer to an array
