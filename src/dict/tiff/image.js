@@ -1,6 +1,8 @@
 //TIFF IMAGE TAGS (exif)
 
-export default {
+import { assignHelpers } from '../helpers'
+
+export default assignHelpers({
     0xea1c: {
         "chr": "B",
         "desc": "Microsoft Padding (http://www.freepatentsonline.com/7421451.html)",
@@ -1638,4 +1640,4 @@ export default {
         "name": "NoiseProfile",
         "type": 12
     }
-}
+})
