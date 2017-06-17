@@ -1,6 +1,7 @@
 import microsoftPadding from './parse/microsoftPadding'
 import comment from './parse/comment'
 import adobe from './parse/adobe'
+import generic from './parse/generic'
 
 import { readID } from './read/app1'
 import { readExif } from './read/exif'
@@ -34,6 +35,9 @@ export default class Segment {
         }
         else if (id.toLowerCase().includes('adobe')) {
           return adobe(this)
+        }
+        else {
+          return generic(this)
         }
 
     }
