@@ -1,4 +1,4 @@
-import * as util from './util'
+import * as util from '../util'
 
 export function getValue(tagId, dictionary, attribute) {
   if (dictionary) {
