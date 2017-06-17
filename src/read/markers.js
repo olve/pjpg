@@ -17,6 +17,7 @@ export default function readMarkers(jpeg) {
                     offset: offset,
                     name: jpegDict[marker],
                     byteMarker: marker,
+                    index: markers.length
                 });
             }
         }
@@ -26,6 +27,7 @@ export default function readMarkers(jpeg) {
               offset: offset,
               name: jpegDict[0xEA1C],
               byteMarker: 0xEA1C,
+              index: markers.length
             });
           }
         }
@@ -41,6 +43,7 @@ export default function readMarkers(jpeg) {
                     offset: offset,
                     name: "iptc",
                     byteMarker: 0x38,
+                    index: markers.length
                 });
             }
         }
