@@ -1,6 +1,7 @@
 //IPTC ENVELOPE TAGS
+import { assignHelpers } from '../helpers'
 
-export default {
+export default assignHelpers({
     0x0000: {
         "desc": "A binary number identifying the version of the Information Interchange Model",
         "fullname": "Iptc.Envelope.ModelVersion",
@@ -127,4 +128,4 @@ export default {
         "repeatable": false,
         "type": "Short"
     }
-}
+})
