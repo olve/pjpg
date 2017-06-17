@@ -11,7 +11,7 @@ export dict from './dict'
 export util from './util'
 export parse from './parse'
 
-import * as read from './read'
+import readMarkers from './read/markers'
 import Segment from './Segment'
 
 export default class JPEG {
@@ -22,7 +22,7 @@ export default class JPEG {
     this.view = new DataView(buffer)
     this.array = new Uint8Array(buffer)
 
-    this.markers = read.markers(this)
+    this.markers = readMarkers(this)
 
   }
 
