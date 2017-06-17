@@ -2,7 +2,7 @@ import readComment from '../read/comment'
 
 export default function parseComment(segment) {
 
-  const value = readComment(segment.offset, segment.buffer)
+  const value = readComment(segment.marker.offset, segment.jpeg)
   const bytes = function() {
 
     const len = value.length
