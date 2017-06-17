@@ -1,13 +1,34 @@
-module.exports.readMicrosoftPadding = require('./read/microsoftPadding')
-module.exports.readComment = require('./read/comment')
-module.exports.readMarkers = require('./read/markers')
-module.exports.readSegment = require('./read/generic')
-module.exports.readAdobe = require('./read/adobe')
-module.exports.readIPTC = require('./read/iptc')
-module.exports.readJFIF = require('./read/jfif')
-module.exports.readExif = require('./read/exif')
-module.exports.app1 = require('./read/app1')
-module.exports.dict = require('./dict')
-module.exports.util = require('./util')
+export readMicrosoftPadding from './read/microsoftPadding'
+export readComment from './read/comment'
+export readMarkers from './read/markers'
+export readSegment from './read/generic'
+export readAdobe from './read/adobe'
+export readIPTC from './read/iptc'
+export readJFIF from './read/jfif'
+export readExif from './read/exif'
+export app1 from './read/app1'
+export dict from './dict'
+export util from './util'
+export parse from './parse'
 
-module.exports.parseJpeg = require('./parse').default
+import * as read from './read'
+import Segment from './Segment'
+
+export default class JPEG {
+  constructor(buffer) {
+    //buffer: JPEG File as ArrayBuffer
+
+    this.buffer = buffer
+    this.view = new DataView(buffer)
+    this.array = new Uint8Array(buffer)
+
+    this.markers = read.markers(this)
+
+  }
+
+  getSegments() {
+    return this.markers.map(marker => new Segment(this, marker))
+  }
+
+
+}
