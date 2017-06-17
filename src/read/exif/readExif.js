@@ -1,7 +1,8 @@
 import { readLength } from '../app1'
 import readIFD from './readIFD'
+import readThumbnail from './readThumbnail'
 
-export default function readExif(offset, jpeg) {
+export default function readExif(marker, jpeg) {
 /*	read Exif tags (App1 marker)
 	  	arguments:
   			offset: offset of the Exif (App1) marker in the file.
@@ -10,6 +11,7 @@ export default function readExif(offset, jpeg) {
   		Adobe use APP1 markers for their XML data. You can tell adobe and exif App1s apart by an ASCII string which follows directly after the APP1 size-marker.
 */
 
+  var offset = marker.offset
   var view = jpeg.view
   var buffer = jpeg.buffer
 
@@ -32,6 +34,14 @@ export default function readExif(offset, jpeg) {
 		littleEndian: littleEndian,
 		tiff: tiff,
 	};
+
+
+  //next marker after APP1 marker is SOI (start of image): there is an embedded thumbnail.
+  var nextMarker = jpeg.markers[marker.index+1]
+  if (nextMarker.byteMarker === 0xFFD8) {
+    self.readThumbnail = function() { return readThumbnail(nextMarker, jpeg) }
+  }
+
 
 	var ifd0offset = view.getUint32(tiff+4, littleEndian);
 	self.ifd0 = readIFD(ifd0offset, tiff, view, littleEndian);
