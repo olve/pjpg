@@ -16,7 +16,7 @@ export default function readExif(marker, jpeg) {
   var buffer = jpeg.buffer
 
 	//total exif data length (does NOT include the app1-marker itself, but DOES include the bytes denoting the length)
-	var length = readLength(offset, buffer);
+	var length = readLength(offset, jpeg);
 
 	var tiff = offset + 10; //starting offset of TIFF header.
 

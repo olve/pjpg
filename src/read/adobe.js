@@ -8,11 +8,10 @@ export default function readAdobe(offset, jpeg) {
   	Note:
   		Exif does also use APP1 markers. You can tell adobe and exif App1s apart by an ASCII string which follows directly after the APP1 size-marker.
 */
-	var buffer = jpeg.buffer
 	var array = jpeg.array
 
 	var start = offset + 32;
-	var length = readLength(offset, buffer);
+	var length = readLength(offset, jpeg);
 	var stop = start + length;
 	var xml = "";
 
