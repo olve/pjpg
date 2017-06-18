@@ -34,6 +34,12 @@ export default {
 
       // Restart Interval termination
       0xFFD0: "RestartIntervalStart",
+      0xFFD1: "RestartInterval1",
+      0xFFD2: "RestartInterval2",
+      0xFFD3: "RestartInterval3",
+      0xFFD4: "RestartInterval4",
+      0xFFD5: "RestartInterval5",
+      0xFFD6: "RestartInterval6",
       0xFFD7: "RestartIntervalEnd",
 
       // Other markers
