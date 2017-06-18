@@ -30,5 +30,18 @@ export default class JPEG {
     return this.markers.map(marker => new Segment(this, marker))
   }
 
+  spliceMarkers(index, start, stop) {
+    /* removes markers. useful for removing embedded thumbnails */
+    this.markers.forEach(marker => {
+      if (marker.offset > start && marker.offset < stop) {
+        this.markers.splice(marker.index, 1)
+      }
+    })
+  }
+  spliceMarkerWithLengthIndicator(marker) {
+    const length = this.view.getUint16(marker.offset+2)
+    this.spliceMarkers(marker.index, marker.offset, marker.offset+length)
+  }
+
 
 }
