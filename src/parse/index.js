@@ -1,3 +1,10 @@
+export adobe from './adobe'
+export comment from './comment'
+export exif from './exif'
+export generic from './generic'
+export microsoftPadding from './microsoftPadding'
+export scan from './scan'
+
 import readMarkers from '../read/markers'
 import Segment from './Segment'
 
