@@ -12,7 +12,7 @@ export default class Segment {
     this.jpeg = jpeg
     this.marker = marker
 
-    const {bytes, value} = this.defineType()
+    const { bytes, value } = this.defineType()
 
     this.bytes = bytes
     this.value = value
@@ -37,7 +37,7 @@ export default class Segment {
 
           //remove any markers found within the segment; they belong to embedded thumbnails and will make a mess of views.
           const length = readLength(this.marker.offset, this.jpeg)
-          const {index, offset} = this.marker
+          const { index, offset } = this.marker
           this.jpeg.spliceMarkers(index, offset, offset+length+2)
 
           return exif
@@ -70,7 +70,7 @@ export default class Segment {
           return scan(this, eoi)
 
       default:
-        return { value: null, bytes: null}
+        return { value: null, bytes: null }
 
     }
   }

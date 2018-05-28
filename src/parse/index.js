@@ -6,7 +6,7 @@ export microsoftPadding from './microsoftPadding'
 export scan from './scan'
 
 import readMarkers from '../read/markers'
-import Segment from './Segment'
+import Segment from '../Segment'
 
 class ParsedJpeg {
 

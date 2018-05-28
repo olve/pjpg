@@ -1,7 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
+
+    mode: 'production',
+
     entry: './src/index.js',
 
     output: {
@@ -41,21 +45,27 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
 
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            ie8: false,
+            compress: true,
+            comments: false,
+            ecma: 7,
+            mangle: {
+              keep_fnames: true,
+              keep_classnames: true,
+            }
+          }
+        })
+      ]
+    },
+
     plugins: [
         new webpack.LoaderOptionsPlugin({
           minimize: true,
           debug: false
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-          beautify: false,
-          mangle: {
-            screw_ie8: true,
-            keep_fnames: true
-          },
-          compress: {
-            screw_ie8: true
-          },
-          comments: false
         }),
      ],
 }
