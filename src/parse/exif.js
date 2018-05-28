@@ -5,7 +5,7 @@ export default function parseExif(segment) {
 
   return {
     value: exif,
-    bytes: [],
+    bytes: _ => [],
   }
-  
+
 }
