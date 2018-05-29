@@ -13,7 +13,6 @@ export default function readExif(marker, jpeg) {
 
   var offset = marker.offset
   var view = jpeg.view
-  var buffer = jpeg.buffer
 
 	//total exif data length (does NOT include the app1-marker itself, but DOES include the bytes denoting the length)
 	var length = readLength(offset, jpeg);
