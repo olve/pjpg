@@ -3,9 +3,9 @@ import comment from './parse/comment'
 import adobe from './parse/adobe'
 import generic from './parse/generic'
 import scan from './parse/scan'
+import exif from './parse/exif'
 
-import { readID, readLength } from './read/app1'
-import { readExif } from './read/exif'
+import { readID } from './read/app1'
 
 export default class Segment {
   constructor(jpeg, marker) {
@@ -32,15 +32,7 @@ export default class Segment {
         const id = readID(this.marker.offset, this.jpeg)
 
         if (id === 'Exif') {
-
-          const exif = readExif(this.marker, this.jpeg)
-
-          //remove any markers found within the segment; they belong to embedded thumbnails and will make a mess of views.
-          const length = readLength(this.marker.offset, this.jpeg)
-          const { index, offset } = this.marker
-          this.jpeg.spliceMarkers(index, offset, offset+length+2)
-
-          return exif
+          return exif(this)
         }
         else if (id.toLowerCase().includes('adobe')) {
           return adobe(this)

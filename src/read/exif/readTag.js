@@ -116,11 +116,16 @@ export default function readTag(id, offset, tiff, view, littleEndian) {
 		id: id,
 		type: type,
 		bytes: bytes,
+		set value(value) {											// for compatibility with ../write/exif/tagToBytes.js
+			this.hasBeenChanged = true
+			this.value = [value]
+		},
 		value: value,
 		byteLength: byteLength,
 		components: components,
 		componentSize: componentSize,
 		littleEndian: littleEndian,
+		hasBeenChanged: false,
 
 	};
 
