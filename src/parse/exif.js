@@ -3,7 +3,6 @@ import { exifToBytes } from '../write/exif'
 import { readLength } from '../read/app1'
 
 export default function parseExif(segment) {
-  //const exif = readExif(segment.offset, segment._buffer)
   const exif = readExif(segment.marker, segment.jpeg)
   const length = readLength(segment.marker.offset, segment.jpeg)
   const { index, offset } = segment.marker
